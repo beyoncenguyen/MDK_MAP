@@ -1,0 +1,36 @@
+{
+	"Credential": "cf",
+	"CF": {
+		"Target": "https://api.cf.ap21.hana.ondemand.com",
+		"Organization": "6464131f-a2f0-4cb3-a1ee-d9adaa6a2d15",
+		"Space": "33b8769b-d4f7-42b6-b92b-1b033c17abad"
+	},
+	"MobileService": {
+		"Type": "standard",
+		"AdminAPI": "https://mobile-service-cockpit-api.cfapps.ap21.hana.ondemand.com/cockpit/v1/org/6464131f-a2f0-4cb3-a1ee-d9adaa6a2d15/space/33b8769b-d4f7-42b6-b92b-1b033c17abad",
+		"AppId": "com.sap.mdk.demo",
+		"Destination": [
+			"com.sap.edm.sampleservice.v2",
+			"DEST_SAM2205_ONLINE_PPROP",
+			"DEST_SAM2205_PPROP",
+			"Odata_01"
+		]
+	},
+	"Onboarding": {
+		"Schema": "sapmobilesvcs",
+		"TimeZone": "UTC",
+		"URL": "sapmobilesvcs://?AppId=com.sap.mdk.demo&ClientId=8b921fc5-4cd3-443c-87a9-4866614a233f&ServerUrl=https://ngs-subacc-djek28zh-ngsc-training-com-sap-mdk-demo.cfapps.ap21.hana.ondemand.com&SapCloudPlatformEndpoint=https://ngs-subacc-djek28zh-ngsc-training-com-sap-mdk-demo.cfapps.ap21.hana.ondemand.com&AuthorizationEndpointUrl=https://ngs-subacc-djek28zh-ngsc-training-com-sap-mdk-demo.cfapps.ap21.hana.ondemand.com/oauth2/api/v1/authorize&RedirectUrl=https://ngs-subacc-djek28zh-ngsc-training-com-sap-mdk-demo.cfapps.ap21.hana.ondemand.com&TokenUrl=https://ngs-subacc-djek28zh-ngsc-training-com-sap-mdk-demo.cfapps.ap21.hana.ondemand.com/oauth2/api/v1/token&multiUser=false"
+	},
+	"LCAP": {
+		"FullName": "",
+		"Service": [],
+		"sourceTemplate": {
+			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+			"version": "1.40.12"
+		}
+	},
+	"Build": {
+		"SourceMap": true,
+		"WMF": false
+	}
+}
