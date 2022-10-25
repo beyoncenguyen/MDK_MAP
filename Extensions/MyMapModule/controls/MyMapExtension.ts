@@ -8,7 +8,6 @@ export class MyMapClass extends IControl {
     private _mapView: any;
     private _geo: any;
     private _gMap: any;
-    private _mapCompass: any
 
     private _customerInfo = {
         lastName: "",
@@ -43,11 +42,11 @@ export class MyMapClass extends IControl {
             //You will display the Google Maps in a MapView.For more details on Google Maps API for android, visit
             //https://developers.google.com/android/reference/com/google/android/gms/maps/package-summary
 
-            this._mapView = new com.google.android.gms.maps.MapView(this.androidContext());
+            this._mapView = new com.google.android.gms.maps.MapView(app.android.context);
             var localeLanguage = java.util.Locale;
 
             //GeoCoder is required to convert a location to get latitude and longitude
-            this._geo = new android.location.Geocoder(this.androidContext(), localeLanguage.ENGLISH);
+            this._geo = new android.location.Geocoder(app.android.context, localeLanguage.ENGLISH);
             this._mapView.onCreate(null);
             this._mapView.onResume();
 
@@ -85,7 +84,17 @@ export class MyMapClass extends IControl {
             For more details on the Apple Maps visit
             https://developer.apple.com/documentation/mapkit */
             this._mapView = MKMapView.alloc().initWithFrame(CGRectMake(0, 0, 100, 100));
+            this._mapView.zoomEnabled = true
+            this._mapView.scrollEnabled = true
+            this._mapView.showsCompass = true
+            this._mapView.showsUserLocation = true;
+            this._mapView.isUserLocationVisible = true
+            this._mapView.showsScale = true
+            this._mapView.showsZoomControls = true
+
         }
+        // this._mapView.userTrackingMode = MKUserTrackingMode.follow
+
     }
 
     private onActivityPaused(args) {
@@ -128,8 +137,8 @@ export class MyMapClass extends IControl {
                     }
                     cordinates.latitiude = pm.location.coordinate.latitude;
                     cordinates.longitude = pm.location.coordinate.longitude;
-                    // cordinates.latitiude = '21.035930618082922';
-                    // cordinates.longitude = '105.78288074507373';
+                    // cordinates.latitiude = this.myLocation?.latitude;
+                    // cordinates.longitude = this.mylocation?.longitude;
                     // 21.035930618082922, 105.78288074507373
                     resolve(cordinates);
                 } else {
@@ -156,24 +165,25 @@ export class MyMapClass extends IControl {
                 console.log("customer's address = " + customerAddress);
 
                 if (app.ios) {
+                    // this.setValue('nguyen van vuot', true)
                     // alert('mylocation '+ this._mapView.isUserLocationVisible)
                     return this.getlatlang(customerAddress)
                         .then((cordinates) => {
                             /* below code is for the apple maps */
                             var latlong = CLLocationCoordinate2DMake(cordinates.latitiude, cordinates.longitude);
                             var annotation = MKPointAnnotation.alloc().init();
+                            // MKUserTrackingButton.alloc().init(this._mapView)
+
                             annotation.coordinate = latlong;
                             annotation.title = this._customerInfo.lastName + "'s" + " location";
                             this._mapView.centerCoordinate = latlong;
                             this._mapView.addAnnotation(annotation);
                             //---------------›4›
-                            this._mapView.compassButton = true;
-                            this._mapView.myLocationButton = true;
-                            this._mapView.showsUserLocation = true;
-                            this._mapView.isUserLocationVisible = true
-                            // // this._mapView.userTrackingMode = MKUserTrackingMode.followMKUserTrackingMode.followWithHeading
-                            this._mapView.showsCompass = true
 
+                            
+                            // let buttonItem = MKUserTrackingBarButtonItem.alloc().init(this._mapView);
+                            // // buttonItem.frame = CGRect.alloc().init( 5, 25, 35, 35);
+                            // this._mapView.addSubview(buttonItem);
                         });
                 }
             });
@@ -203,6 +213,7 @@ export class MyMapClass extends IControl {
 
     public setValue(value: any, notify: boolean, isTextValue?: boolean): Promise<any> {
         // do nothing
+        alert(value + notify)
         return Promise.resolve();
     }
 }
